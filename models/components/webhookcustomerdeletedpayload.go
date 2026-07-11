@@ -1,0 +1,53 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+	"time"
+)
+
+// WebhookCustomerDeletedPayload - Sent when a customer is deleted.
+//
+// **Discord & Slack support:** Basic
+type WebhookCustomerDeletedPayload struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_     string    `const:"customer.deleted" json:"type"`
+	Timestamp time.Time `json:"timestamp"`
+	Data      Customer  `json:"data"`
+}
+
+func (w WebhookCustomerDeletedPayload) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WebhookCustomerDeletedPayload) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (w *WebhookCustomerDeletedPayload) GetType() string {
+	return "customer.deleted"
+}
+
+func (w *WebhookCustomerDeletedPayload) GetTimestamp() time.Time {
+	if w == nil {
+		return time.Time{}
+	}
+	return w.Timestamp
+}
+
+func (w *WebhookCustomerDeletedPayload) GetData() Customer {
+	if w == nil {
+		return Customer{}
+	}
+	return w.Data
+}
+
+func (w *WebhookCustomerDeletedPayload) GetDataIndividual() *CustomerIndividual {
+	return w.GetData().CustomerIndividual
+}
+
+func (w *WebhookCustomerDeletedPayload) GetDataTeam() *CustomerTeam {
+	return w.GetData().CustomerTeam
+}

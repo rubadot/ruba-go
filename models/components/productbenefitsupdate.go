@@ -1,0 +1,14 @@
+package components
+
+// ProductBenefitsUpdate - Schema to update the benefits granted by a product.
+type ProductBenefitsUpdate struct {
+	// List of benefit IDs. Each one must be on the same organization as the product.
+	Benefits []string `json:"benefits"`
+}
+
+func (p *ProductBenefitsUpdate) GetBenefits() []string {
+	if p == nil {
+		return []string{}
+	}
+	return p.Benefits
+}

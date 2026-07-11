@@ -1,0 +1,35 @@
+package components
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type MemberRole string
+
+const (
+	MemberRoleOwner          MemberRole = "owner"
+	MemberRoleBillingManager MemberRole = "billing_manager"
+	MemberRoleMember         MemberRole = "member"
+)
+
+func (e MemberRole) ToPointer() *MemberRole {
+	return &e
+}
+func (e *MemberRole) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "owner":
+		fallthrough
+	case "billing_manager":
+		fallthrough
+	case "member":
+		*e = MemberRole(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for MemberRole: %v", v)
+	}
+}

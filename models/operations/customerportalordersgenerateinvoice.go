@@ -1,0 +1,56 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerPortalOrdersGenerateInvoiceSecurity struct {
+	CustomerSession *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_customer_session"`
+	MemberSession   *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_member_session"`
+}
+
+func (c *CustomerPortalOrdersGenerateInvoiceSecurity) GetCustomerSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSession
+}
+
+func (c *CustomerPortalOrdersGenerateInvoiceSecurity) GetMemberSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.MemberSession
+}
+
+type CustomerPortalOrdersGenerateInvoiceRequest struct {
+	// The order ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (c *CustomerPortalOrdersGenerateInvoiceRequest) GetID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ID
+}
+
+type CustomerPortalOrdersGenerateInvoiceResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	Any any
+}
+
+func (c *CustomerPortalOrdersGenerateInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerPortalOrdersGenerateInvoiceResponse) GetAny() any {
+	if c == nil {
+		return nil
+	}
+	return c.Any
+}

@@ -1,0 +1,27 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type CursorPagination struct {
+	HasNextPage bool `json:"has_next_page"`
+}
+
+func (c CursorPagination) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CursorPagination) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"has_next_page"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CursorPagination) GetHasNextPage() bool {
+	if c == nil {
+		return false
+	}
+	return c.HasNextPage
+}

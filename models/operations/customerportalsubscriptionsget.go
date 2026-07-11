@@ -1,0 +1,56 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerPortalSubscriptionsGetSecurity struct {
+	CustomerSession *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_customer_session"`
+	MemberSession   *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_member_session"`
+}
+
+func (c *CustomerPortalSubscriptionsGetSecurity) GetCustomerSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSession
+}
+
+func (c *CustomerPortalSubscriptionsGetSecurity) GetMemberSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.MemberSession
+}
+
+type CustomerPortalSubscriptionsGetRequest struct {
+	// The subscription ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (c *CustomerPortalSubscriptionsGetRequest) GetID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ID
+}
+
+type CustomerPortalSubscriptionsGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	CustomerSubscription *components.CustomerSubscription
+}
+
+func (c *CustomerPortalSubscriptionsGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerPortalSubscriptionsGetResponse) GetCustomerSubscription() *components.CustomerSubscription {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSubscription
+}

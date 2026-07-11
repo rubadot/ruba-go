@@ -1,0 +1,43 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type BenefitGrantError struct {
+	Message   string `json:"message"`
+	Type      string `json:"type"`
+	Timestamp string `json:"timestamp"`
+}
+
+func (b BenefitGrantError) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BenefitGrantError) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"message", "type", "timestamp"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (b *BenefitGrantError) GetMessage() string {
+	if b == nil {
+		return ""
+	}
+	return b.Message
+}
+
+func (b *BenefitGrantError) GetType() string {
+	if b == nil {
+		return ""
+	}
+	return b.Type
+}
+
+func (b *BenefitGrantError) GetTimestamp() string {
+	if b == nil {
+		return ""
+	}
+	return b.Timestamp
+}

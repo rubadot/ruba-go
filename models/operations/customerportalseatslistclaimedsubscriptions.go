@@ -1,0 +1,79 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerPortalSeatsListClaimedSubscriptionsSecurity struct {
+	CustomerSession *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_customer_session"`
+	MemberSession   *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_member_session"`
+}
+
+func (c *CustomerPortalSeatsListClaimedSubscriptionsSecurity) GetCustomerSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSession
+}
+
+func (c *CustomerPortalSeatsListClaimedSubscriptionsSecurity) GetMemberSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.MemberSession
+}
+
+type CustomerPortalSeatsListClaimedSubscriptionsRequest struct {
+	// Page number, defaults to 1.
+	Page *int64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	// Size of a page, defaults to 10. Maximum is 100.
+	Limit *int64 `default:"10" queryParam:"style=form,explode=true,name=limit"`
+}
+
+func (c CustomerPortalSeatsListClaimedSubscriptionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerPortalSeatsListClaimedSubscriptionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CustomerPortalSeatsListClaimedSubscriptionsRequest) GetPage() *int64 {
+	if c == nil {
+		return nil
+	}
+	return c.Page
+}
+
+func (c *CustomerPortalSeatsListClaimedSubscriptionsRequest) GetLimit() *int64 {
+	if c == nil {
+		return nil
+	}
+	return c.Limit
+}
+
+type CustomerPortalSeatsListClaimedSubscriptionsResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	ListResourceCustomerSubscription *components.ListResourceCustomerSubscription
+
+	Next func() (*CustomerPortalSeatsListClaimedSubscriptionsResponse, error)
+}
+
+func (c *CustomerPortalSeatsListClaimedSubscriptionsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerPortalSeatsListClaimedSubscriptionsResponse) GetListResourceCustomerSubscription() *components.ListResourceCustomerSubscription {
+	if c == nil {
+		return nil
+	}
+	return c.ListResourceCustomerSubscription
+}

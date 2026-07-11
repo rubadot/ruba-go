@@ -1,0 +1,45 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+	"time"
+)
+
+// WebhookBenefitGrantCreatedPayload - Sent when a new benefit grant is created.
+//
+// **Discord & Slack support:** Basic
+type WebhookBenefitGrantCreatedPayload struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_     string              `const:"benefit_grant.created" json:"type"`
+	Timestamp time.Time           `json:"timestamp"`
+	Data      BenefitGrantWebhook `json:"data"`
+}
+
+func (w WebhookBenefitGrantCreatedPayload) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WebhookBenefitGrantCreatedPayload) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (w *WebhookBenefitGrantCreatedPayload) GetType() string {
+	return "benefit_grant.created"
+}
+
+func (w *WebhookBenefitGrantCreatedPayload) GetTimestamp() time.Time {
+	if w == nil {
+		return time.Time{}
+	}
+	return w.Timestamp
+}
+
+func (w *WebhookBenefitGrantCreatedPayload) GetData() BenefitGrantWebhook {
+	if w == nil {
+		return BenefitGrantWebhook{}
+	}
+	return w.Data
+}

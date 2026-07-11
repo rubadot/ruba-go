@@ -1,0 +1,28 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type Oauth2ClientsOauth2CreateClientResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	Any any
+}
+
+func (o *Oauth2ClientsOauth2CreateClientResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *Oauth2ClientsOauth2CreateClientResponse) GetAny() any {
+	if o == nil {
+		return nil
+	}
+	return o.Any
+}
+
+// #region class-body-oauth2clientsoauth2createclientresponse
+// #endregion class-body-oauth2clientsoauth2createclientresponse

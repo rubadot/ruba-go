@@ -1,0 +1,28 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+// BenefitCustomSubscriberProperties - Properties available to subscribers for a benefit of type `custom`.
+type BenefitCustomSubscriberProperties struct {
+	Note *string `json:"note"`
+}
+
+func (b BenefitCustomSubscriberProperties) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BenefitCustomSubscriberProperties) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (b *BenefitCustomSubscriberProperties) GetNote() *string {
+	if b == nil {
+		return nil
+	}
+	return b.Note
+}

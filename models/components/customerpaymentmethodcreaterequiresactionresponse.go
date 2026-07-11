@@ -1,0 +1,33 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type CustomerPaymentMethodCreateRequiresActionResponse struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	status       string `const:"requires_action" json:"status"`
+	ClientSecret string `json:"client_secret"`
+}
+
+func (c CustomerPaymentMethodCreateRequiresActionResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerPaymentMethodCreateRequiresActionResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"status", "client_secret"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CustomerPaymentMethodCreateRequiresActionResponse) GetStatus() string {
+	return "requires_action"
+}
+
+func (c *CustomerPaymentMethodCreateRequiresActionResponse) GetClientSecret() string {
+	if c == nil {
+		return ""
+	}
+	return c.ClientSecret
+}

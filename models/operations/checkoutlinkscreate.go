@@ -1,0 +1,25 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CheckoutLinksCreateResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Checkout link created.
+	CheckoutLink *components.CheckoutLink
+}
+
+func (c *CheckoutLinksCreateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CheckoutLinksCreateResponse) GetCheckoutLink() *components.CheckoutLink {
+	if c == nil {
+		return nil
+	}
+	return c.CheckoutLink
+}

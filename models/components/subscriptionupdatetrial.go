@@ -1,0 +1,29 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+	"time"
+)
+
+type SubscriptionUpdateTrial struct {
+	// Set or extend the trial period of the subscription. If set to `now`, the trial will end immediately.
+	TrialEnd time.Time `json:"trial_end"`
+}
+
+func (s SubscriptionUpdateTrial) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SubscriptionUpdateTrial) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"trial_end"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SubscriptionUpdateTrial) GetTrialEnd() time.Time {
+	if s == nil {
+		return time.Time{}
+	}
+	return s.TrialEnd
+}

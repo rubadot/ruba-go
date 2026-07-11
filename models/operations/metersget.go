@@ -1,0 +1,37 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type MetersGetRequest struct {
+	// The meter ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (m *MetersGetRequest) GetID() string {
+	if m == nil {
+		return ""
+	}
+	return m.ID
+}
+
+type MetersGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	Meter *components.Meter
+}
+
+func (m *MetersGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if m == nil {
+		return components.HTTPMetadata{}
+	}
+	return m.HTTPMeta
+}
+
+func (m *MetersGetResponse) GetMeter() *components.Meter {
+	if m == nil {
+		return nil
+	}
+	return m.Meter
+}

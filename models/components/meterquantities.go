@@ -1,0 +1,21 @@
+package components
+
+type MeterQuantities struct {
+	Quantities []MeterQuantity `json:"quantities"`
+	// The total quantity for the period.
+	Total float64 `json:"total"`
+}
+
+func (m *MeterQuantities) GetQuantities() []MeterQuantity {
+	if m == nil {
+		return []MeterQuantity{}
+	}
+	return m.Quantities
+}
+
+func (m *MeterQuantities) GetTotal() float64 {
+	if m == nil {
+		return 0.0
+	}
+	return m.Total
+}

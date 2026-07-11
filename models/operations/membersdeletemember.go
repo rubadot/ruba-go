@@ -1,0 +1,27 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type MembersDeleteMemberRequest struct {
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (m *MembersDeleteMemberRequest) GetID() string {
+	if m == nil {
+		return ""
+	}
+	return m.ID
+}
+
+type MembersDeleteMemberResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+func (m *MembersDeleteMemberResponse) GetHTTPMeta() components.HTTPMetadata {
+	if m == nil {
+		return components.HTTPMetadata{}
+	}
+	return m.HTTPMeta
+}

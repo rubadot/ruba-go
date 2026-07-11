@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type ExpiredCheckoutError struct {
+	Error_ string `const:"ExpiredCheckoutError" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &ExpiredCheckoutError{}
+
+func (e *ExpiredCheckoutError) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

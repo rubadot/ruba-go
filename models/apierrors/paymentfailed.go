@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type PaymentFailed struct {
+	Error_ string `const:"PaymentFailed" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &PaymentFailed{}
+
+func (e *PaymentFailed) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

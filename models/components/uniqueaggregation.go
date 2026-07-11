@@ -1,0 +1,34 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+	"github.com/Rubadot/ruba-go/types"
+)
+
+type UniqueAggregation struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	func_    *string `const:"unique" json:"func"`
+	Property string  `json:"property"`
+}
+
+func (u UniqueAggregation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UniqueAggregation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"property"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UniqueAggregation) GetFunc() *string {
+	return types.Pointer("unique")
+}
+
+func (u *UniqueAggregation) GetProperty() string {
+	if u == nil {
+		return ""
+	}
+	return u.Property
+}

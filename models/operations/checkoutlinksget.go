@@ -1,0 +1,37 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CheckoutLinksGetRequest struct {
+	// The checkout link ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (c *CheckoutLinksGetRequest) GetID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ID
+}
+
+type CheckoutLinksGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	CheckoutLink *components.CheckoutLink
+}
+
+func (c *CheckoutLinksGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CheckoutLinksGetResponse) GetCheckoutLink() *components.CheckoutLink {
+	if c == nil {
+		return nil
+	}
+	return c.CheckoutLink
+}

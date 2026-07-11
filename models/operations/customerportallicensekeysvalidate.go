@@ -1,0 +1,25 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerPortalLicenseKeysValidateResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	ValidatedLicenseKey *components.ValidatedLicenseKey
+}
+
+func (c *CustomerPortalLicenseKeysValidateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerPortalLicenseKeysValidateResponse) GetValidatedLicenseKey() *components.ValidatedLicenseKey {
+	if c == nil {
+		return nil
+	}
+	return c.ValidatedLicenseKey
+}

@@ -1,0 +1,44 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerPortalCustomersGetSecurity struct {
+	CustomerSession *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_customer_session"`
+	MemberSession   *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_member_session"`
+}
+
+func (c *CustomerPortalCustomersGetSecurity) GetCustomerSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSession
+}
+
+func (c *CustomerPortalCustomersGetSecurity) GetMemberSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.MemberSession
+}
+
+type CustomerPortalCustomersGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	CustomerPortalCustomer *components.CustomerPortalCustomer
+}
+
+func (c *CustomerPortalCustomersGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerPortalCustomersGetResponse) GetCustomerPortalCustomer() *components.CustomerPortalCustomer {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerPortalCustomer
+}

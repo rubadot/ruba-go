@@ -1,0 +1,28 @@
+package components
+
+type FileUploadCompleted struct {
+	ID    string                      `json:"id"`
+	Path  string                      `json:"path"`
+	Parts []S3FileUploadCompletedPart `json:"parts"`
+}
+
+func (f *FileUploadCompleted) GetID() string {
+	if f == nil {
+		return ""
+	}
+	return f.ID
+}
+
+func (f *FileUploadCompleted) GetPath() string {
+	if f == nil {
+		return ""
+	}
+	return f.Path
+}
+
+func (f *FileUploadCompleted) GetParts() []S3FileUploadCompletedPart {
+	if f == nil {
+		return []S3FileUploadCompletedPart{}
+	}
+	return f.Parts
+}

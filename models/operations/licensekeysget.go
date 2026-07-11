@@ -1,0 +1,36 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type LicenseKeysGetRequest struct {
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (l *LicenseKeysGetRequest) GetID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ID
+}
+
+type LicenseKeysGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	LicenseKeyWithActivations *components.LicenseKeyWithActivations
+}
+
+func (l *LicenseKeysGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if l == nil {
+		return components.HTTPMetadata{}
+	}
+	return l.HTTPMeta
+}
+
+func (l *LicenseKeysGetResponse) GetLicenseKeyWithActivations() *components.LicenseKeyWithActivations {
+	if l == nil {
+		return nil
+	}
+	return l.LicenseKeyWithActivations
+}

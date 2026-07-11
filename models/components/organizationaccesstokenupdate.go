@@ -1,0 +1,20 @@
+package components
+
+type OrganizationAccessTokenUpdate struct {
+	Comment *string          `json:"comment,omitempty"`
+	Scopes  []AvailableScope `json:"scopes,omitempty"`
+}
+
+func (o *OrganizationAccessTokenUpdate) GetComment() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Comment
+}
+
+func (o *OrganizationAccessTokenUpdate) GetScopes() []AvailableScope {
+	if o == nil {
+		return nil
+	}
+	return o.Scopes
+}

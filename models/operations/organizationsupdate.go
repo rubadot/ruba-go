@@ -1,0 +1,44 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type OrganizationsUpdateRequest struct {
+	ID                 string                        `pathParam:"style=simple,explode=false,name=id"`
+	OrganizationUpdate components.OrganizationUpdate `request:"mediaType=application/json"`
+}
+
+func (o *OrganizationsUpdateRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *OrganizationsUpdateRequest) GetOrganizationUpdate() components.OrganizationUpdate {
+	if o == nil {
+		return components.OrganizationUpdate{}
+	}
+	return o.OrganizationUpdate
+}
+
+type OrganizationsUpdateResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Organization updated.
+	Organization *components.Organization
+}
+
+func (o *OrganizationsUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *OrganizationsUpdateResponse) GetOrganization() *components.Organization {
+	if o == nil {
+		return nil
+	}
+	return o.Organization
+}

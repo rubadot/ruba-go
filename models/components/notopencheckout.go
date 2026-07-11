@@ -1,0 +1,33 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type NotOpenCheckout struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	error_ string `const:"NotOpenCheckout" json:"error"`
+	Detail string `json:"detail"`
+}
+
+func (n NotOpenCheckout) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(n, "", false)
+}
+
+func (n *NotOpenCheckout) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &n, "", false, []string{"error", "detail"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (n *NotOpenCheckout) GetError() string {
+	return "NotOpenCheckout"
+}
+
+func (n *NotOpenCheckout) GetDetail() string {
+	if n == nil {
+		return ""
+	}
+	return n.Detail
+}

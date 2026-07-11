@@ -1,0 +1,37 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type EventsGetRequest struct {
+	// The event ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (e *EventsGetRequest) GetID() string {
+	if e == nil {
+		return ""
+	}
+	return e.ID
+}
+
+type EventsGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	Event *components.Event
+}
+
+func (e *EventsGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if e == nil {
+		return components.HTTPMetadata{}
+	}
+	return e.HTTPMeta
+}
+
+func (e *EventsGetResponse) GetEvent() *components.Event {
+	if e == nil {
+		return nil
+	}
+	return e.Event
+}

@@ -1,0 +1,20 @@
+package components
+
+type ListResourceCustomerPaymentMethod struct {
+	Items      []CustomerPaymentMethod `json:"items"`
+	Pagination Pagination              `json:"pagination"`
+}
+
+func (l *ListResourceCustomerPaymentMethod) GetItems() []CustomerPaymentMethod {
+	if l == nil {
+		return []CustomerPaymentMethod{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceCustomerPaymentMethod) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

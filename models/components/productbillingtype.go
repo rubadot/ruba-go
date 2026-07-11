@@ -1,0 +1,32 @@
+package components
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type ProductBillingType string
+
+const (
+	ProductBillingTypeOneTime   ProductBillingType = "one_time"
+	ProductBillingTypeRecurring ProductBillingType = "recurring"
+)
+
+func (e ProductBillingType) ToPointer() *ProductBillingType {
+	return &e
+}
+func (e *ProductBillingType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "one_time":
+		fallthrough
+	case "recurring":
+		*e = ProductBillingType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ProductBillingType: %v", v)
+	}
+}

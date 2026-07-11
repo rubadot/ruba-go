@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type Unauthorized struct {
+	Error_ string `const:"Unauthorized" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &Unauthorized{}
+
+func (e *Unauthorized) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

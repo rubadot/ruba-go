@@ -1,0 +1,44 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerSeatsListSeatsRequest struct {
+	SubscriptionID *string `queryParam:"style=form,explode=true,name=subscription_id"`
+	OrderID        *string `queryParam:"style=form,explode=true,name=order_id"`
+}
+
+func (c *CustomerSeatsListSeatsRequest) GetSubscriptionID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionID
+}
+
+func (c *CustomerSeatsListSeatsRequest) GetOrderID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.OrderID
+}
+
+type CustomerSeatsListSeatsResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	SeatsList *components.SeatsList
+}
+
+func (c *CustomerSeatsListSeatsResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerSeatsListSeatsResponse) GetSeatsList() *components.SeatsList {
+	if c == nil {
+		return nil
+	}
+	return c.SeatsList
+}

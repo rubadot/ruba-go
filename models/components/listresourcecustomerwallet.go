@@ -1,0 +1,20 @@
+package components
+
+type ListResourceCustomerWallet struct {
+	Items      []CustomerWallet `json:"items"`
+	Pagination Pagination       `json:"pagination"`
+}
+
+func (l *ListResourceCustomerWallet) GetItems() []CustomerWallet {
+	if l == nil {
+		return []CustomerWallet{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceCustomerWallet) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

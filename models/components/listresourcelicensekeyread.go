@@ -1,0 +1,20 @@
+package components
+
+type ListResourceLicenseKeyRead struct {
+	Items      []LicenseKeyRead `json:"items"`
+	Pagination Pagination       `json:"pagination"`
+}
+
+func (l *ListResourceLicenseKeyRead) GetItems() []LicenseKeyRead {
+	if l == nil {
+		return []LicenseKeyRead{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceLicenseKeyRead) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

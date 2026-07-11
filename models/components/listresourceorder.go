@@ -1,0 +1,20 @@
+package components
+
+type ListResourceOrder struct {
+	Items      []Order    `json:"items"`
+	Pagination Pagination `json:"pagination"`
+}
+
+func (l *ListResourceOrder) GetItems() []Order {
+	if l == nil {
+		return []Order{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceOrder) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

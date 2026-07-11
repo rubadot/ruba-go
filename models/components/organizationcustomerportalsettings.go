@@ -1,0 +1,20 @@
+package components
+
+type OrganizationCustomerPortalSettings struct {
+	Usage        CustomerPortalUsageSettings        `json:"usage"`
+	Subscription CustomerPortalSubscriptionSettings `json:"subscription"`
+}
+
+func (o *OrganizationCustomerPortalSettings) GetUsage() CustomerPortalUsageSettings {
+	if o == nil {
+		return CustomerPortalUsageSettings{}
+	}
+	return o.Usage
+}
+
+func (o *OrganizationCustomerPortalSettings) GetSubscription() CustomerPortalSubscriptionSettings {
+	if o == nil {
+		return CustomerPortalSubscriptionSettings{}
+	}
+	return o.Subscription
+}

@@ -1,0 +1,26 @@
+package components
+
+import (
+	"net/http"
+)
+
+type HTTPMetadata struct {
+	// Raw HTTP response; suitable for custom response parsing
+	Response *http.Response `json:"-"`
+	// Raw HTTP request; suitable for debugging
+	Request *http.Request `json:"-"`
+}
+
+func (h *HTTPMetadata) GetResponse() *http.Response {
+	if h == nil {
+		return nil
+	}
+	return h.Response
+}
+
+func (h *HTTPMetadata) GetRequest() *http.Request {
+	if h == nil {
+		return nil
+	}
+	return h.Request
+}

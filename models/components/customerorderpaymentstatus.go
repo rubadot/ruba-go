@@ -1,0 +1,23 @@
+package components
+
+// CustomerOrderPaymentStatus - Payment status for an order.
+type CustomerOrderPaymentStatus struct {
+	// Current payment status.
+	Status string `json:"status"`
+	// Error message if payment failed.
+	Error *string `json:"error,omitempty"`
+}
+
+func (c *CustomerOrderPaymentStatus) GetStatus() string {
+	if c == nil {
+		return ""
+	}
+	return c.Status
+}
+
+func (c *CustomerOrderPaymentStatus) GetError() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Error
+}

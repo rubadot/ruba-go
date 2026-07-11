@@ -1,0 +1,20 @@
+package components
+
+type ListResourceWebhookDelivery struct {
+	Items      []WebhookDelivery `json:"items"`
+	Pagination Pagination        `json:"pagination"`
+}
+
+func (l *ListResourceWebhookDelivery) GetItems() []WebhookDelivery {
+	if l == nil {
+		return []WebhookDelivery{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceWebhookDelivery) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

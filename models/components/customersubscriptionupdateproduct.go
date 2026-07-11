@@ -1,0 +1,28 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type CustomerSubscriptionUpdateProduct struct {
+	// Update subscription to another product.
+	ProductID string `json:"product_id"`
+}
+
+func (c CustomerSubscriptionUpdateProduct) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerSubscriptionUpdateProduct) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"product_id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CustomerSubscriptionUpdateProduct) GetProductID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ProductID
+}

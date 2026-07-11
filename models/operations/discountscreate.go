@@ -1,0 +1,25 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type DiscountsCreateResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Discount created.
+	Discount *components.Discount
+}
+
+func (d *DiscountsCreateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
+		return components.HTTPMetadata{}
+	}
+	return d.HTTPMeta
+}
+
+func (d *DiscountsCreateResponse) GetDiscount() *components.Discount {
+	if d == nil {
+		return nil
+	}
+	return d.Discount
+}

@@ -1,0 +1,25 @@
+package webhooks
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type EndpointbenefitCreatedPostResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	Any any
+}
+
+func (e *EndpointbenefitCreatedPostResponse) GetHTTPMeta() components.HTTPMetadata {
+	if e == nil {
+		return components.HTTPMetadata{}
+	}
+	return e.HTTPMeta
+}
+
+func (e *EndpointbenefitCreatedPostResponse) GetAny() any {
+	if e == nil {
+		return nil
+	}
+	return e.Any
+}

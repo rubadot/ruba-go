@@ -1,0 +1,39 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomersCreateResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Customer created.
+	Customer *components.Customer
+}
+
+func (c *CustomersCreateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomersCreateResponse) GetCustomer() *components.Customer {
+	if c == nil {
+		return nil
+	}
+	return c.Customer
+}
+
+func (c *CustomersCreateResponse) GetCustomerIndividual() *components.CustomerIndividual {
+	if v := c.GetCustomer(); v != nil {
+		return v.CustomerIndividual
+	}
+	return nil
+}
+
+func (c *CustomersCreateResponse) GetCustomerTeam() *components.CustomerTeam {
+	if v := c.GetCustomer(); v != nil {
+		return v.CustomerTeam
+	}
+	return nil
+}

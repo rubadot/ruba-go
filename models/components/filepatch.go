@@ -1,0 +1,20 @@
+package components
+
+type FilePatch struct {
+	Name    *string `json:"name,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+func (f *FilePatch) GetName() *string {
+	if f == nil {
+		return nil
+	}
+	return f.Name
+}
+
+func (f *FilePatch) GetVersion() *string {
+	if f == nil {
+		return nil
+	}
+	return f.Version
+}

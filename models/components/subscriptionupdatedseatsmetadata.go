@@ -1,0 +1,43 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type SubscriptionUpdatedSeatsMetadata struct {
+	SubscriptionID    string                        `json:"subscription_id"`
+	Seats             int64                         `json:"seats"`
+	ProrationBehavior SubscriptionProrationBehavior `json:"proration_behavior"`
+}
+
+func (s SubscriptionUpdatedSeatsMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SubscriptionUpdatedSeatsMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"subscription_id", "seats", "proration_behavior"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SubscriptionUpdatedSeatsMetadata) GetSubscriptionID() string {
+	if s == nil {
+		return ""
+	}
+	return s.SubscriptionID
+}
+
+func (s *SubscriptionUpdatedSeatsMetadata) GetSeats() int64 {
+	if s == nil {
+		return 0
+	}
+	return s.Seats
+}
+
+func (s *SubscriptionUpdatedSeatsMetadata) GetProrationBehavior() SubscriptionProrationBehavior {
+	if s == nil {
+		return SubscriptionProrationBehavior("")
+	}
+	return s.ProrationBehavior
+}

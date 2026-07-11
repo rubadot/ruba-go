@@ -1,0 +1,46 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+// BenefitDiscordCreateProperties - Properties to create a benefit of type `discord`.
+type BenefitDiscordCreateProperties struct {
+	GuildToken string `json:"guild_token"`
+	// The ID of the Discord role to grant.
+	RoleID string `json:"role_id"`
+	// Whether to kick the member from the Discord server on revocation.
+	KickMember bool `json:"kick_member"`
+}
+
+func (b BenefitDiscordCreateProperties) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BenefitDiscordCreateProperties) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"guild_token", "role_id", "kick_member"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (b *BenefitDiscordCreateProperties) GetGuildToken() string {
+	if b == nil {
+		return ""
+	}
+	return b.GuildToken
+}
+
+func (b *BenefitDiscordCreateProperties) GetRoleID() string {
+	if b == nil {
+		return ""
+	}
+	return b.RoleID
+}
+
+func (b *BenefitDiscordCreateProperties) GetKickMember() bool {
+	if b == nil {
+		return false
+	}
+	return b.KickMember
+}

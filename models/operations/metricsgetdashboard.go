@@ -1,0 +1,37 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type MetricsGetDashboardRequest struct {
+	// The metric dashboard ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (m *MetricsGetDashboardRequest) GetID() string {
+	if m == nil {
+		return ""
+	}
+	return m.ID
+}
+
+type MetricsGetDashboardResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	MetricDashboardSchema *components.MetricDashboardSchema
+}
+
+func (m *MetricsGetDashboardResponse) GetHTTPMeta() components.HTTPMetadata {
+	if m == nil {
+		return components.HTTPMetadata{}
+	}
+	return m.HTTPMeta
+}
+
+func (m *MetricsGetDashboardResponse) GetMetricDashboardSchema() *components.MetricDashboardSchema {
+	if m == nil {
+		return nil
+	}
+	return m.MetricDashboardSchema
+}

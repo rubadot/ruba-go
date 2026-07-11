@@ -1,0 +1,25 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerSeatsAssignSeatResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	CustomerSeat *components.CustomerSeat
+}
+
+func (c *CustomerSeatsAssignSeatResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerSeatsAssignSeatResponse) GetCustomerSeat() *components.CustomerSeat {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSeat
+}

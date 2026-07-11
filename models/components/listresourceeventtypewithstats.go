@@ -1,0 +1,20 @@
+package components
+
+type ListResourceEventTypeWithStats struct {
+	Items      []EventTypeWithStats `json:"items"`
+	Pagination Pagination           `json:"pagination"`
+}
+
+func (l *ListResourceEventTypeWithStats) GetItems() []EventTypeWithStats {
+	if l == nil {
+		return []EventTypeWithStats{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceEventTypeWithStats) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

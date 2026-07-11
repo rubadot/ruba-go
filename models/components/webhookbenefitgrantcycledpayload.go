@@ -1,0 +1,46 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+	"time"
+)
+
+// WebhookBenefitGrantCycledPayload - Sent when a benefit grant is cycled,
+// meaning the related subscription has been renewed for another period.
+//
+// **Discord & Slack support:** Basic
+type WebhookBenefitGrantCycledPayload struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_     string              `const:"benefit_grant.cycled" json:"type"`
+	Timestamp time.Time           `json:"timestamp"`
+	Data      BenefitGrantWebhook `json:"data"`
+}
+
+func (w WebhookBenefitGrantCycledPayload) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WebhookBenefitGrantCycledPayload) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (w *WebhookBenefitGrantCycledPayload) GetType() string {
+	return "benefit_grant.cycled"
+}
+
+func (w *WebhookBenefitGrantCycledPayload) GetTimestamp() time.Time {
+	if w == nil {
+		return time.Time{}
+	}
+	return w.Timestamp
+}
+
+func (w *WebhookBenefitGrantCycledPayload) GetData() BenefitGrantWebhook {
+	if w == nil {
+		return BenefitGrantWebhook{}
+	}
+	return w.Data
+}

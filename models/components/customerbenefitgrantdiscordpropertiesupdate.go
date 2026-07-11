@@ -1,0 +1,27 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type CustomerBenefitGrantDiscordPropertiesUpdate struct {
+	AccountID *string `json:"account_id"`
+}
+
+func (c CustomerBenefitGrantDiscordPropertiesUpdate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerBenefitGrantDiscordPropertiesUpdate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CustomerBenefitGrantDiscordPropertiesUpdate) GetAccountID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.AccountID
+}

@@ -1,0 +1,32 @@
+package components
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type FilterConjunction string
+
+const (
+	FilterConjunctionAnd FilterConjunction = "and"
+	FilterConjunctionOr  FilterConjunction = "or"
+)
+
+func (e FilterConjunction) ToPointer() *FilterConjunction {
+	return &e
+}
+func (e *FilterConjunction) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "and":
+		fallthrough
+	case "or":
+		*e = FilterConjunction(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FilterConjunction: %v", v)
+	}
+}

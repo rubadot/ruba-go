@@ -1,0 +1,33 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type CustomerBenefitGrantDiscordUpdate struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	benefitType string                                      `const:"discord" json:"benefit_type"`
+	Properties  CustomerBenefitGrantDiscordPropertiesUpdate `json:"properties"`
+}
+
+func (c CustomerBenefitGrantDiscordUpdate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerBenefitGrantDiscordUpdate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"benefit_type", "properties"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CustomerBenefitGrantDiscordUpdate) GetBenefitType() string {
+	return "discord"
+}
+
+func (c *CustomerBenefitGrantDiscordUpdate) GetProperties() CustomerBenefitGrantDiscordPropertiesUpdate {
+	if c == nil {
+		return CustomerBenefitGrantDiscordPropertiesUpdate{}
+	}
+	return c.Properties
+}

@@ -1,0 +1,28 @@
+package components
+
+type CustomerPaymentMethodCreate struct {
+	ConfirmationTokenID string `json:"confirmation_token_id"`
+	SetDefault          bool   `json:"set_default"`
+	ReturnURL           string `json:"return_url"`
+}
+
+func (c *CustomerPaymentMethodCreate) GetConfirmationTokenID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ConfirmationTokenID
+}
+
+func (c *CustomerPaymentMethodCreate) GetSetDefault() bool {
+	if c == nil {
+		return false
+	}
+	return c.SetDefault
+}
+
+func (c *CustomerPaymentMethodCreate) GetReturnURL() string {
+	if c == nil {
+		return ""
+	}
+	return c.ReturnURL
+}

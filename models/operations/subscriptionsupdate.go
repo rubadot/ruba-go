@@ -1,0 +1,45 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type SubscriptionsUpdateRequest struct {
+	// The subscription ID.
+	ID                 string                        `pathParam:"style=simple,explode=false,name=id"`
+	SubscriptionUpdate components.SubscriptionUpdate `request:"mediaType=application/json"`
+}
+
+func (s *SubscriptionsUpdateRequest) GetID() string {
+	if s == nil {
+		return ""
+	}
+	return s.ID
+}
+
+func (s *SubscriptionsUpdateRequest) GetSubscriptionUpdate() components.SubscriptionUpdate {
+	if s == nil {
+		return components.SubscriptionUpdate{}
+	}
+	return s.SubscriptionUpdate
+}
+
+type SubscriptionsUpdateResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Subscription updated.
+	Subscription *components.Subscription
+}
+
+func (s *SubscriptionsUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if s == nil {
+		return components.HTTPMetadata{}
+	}
+	return s.HTTPMeta
+}
+
+func (s *SubscriptionsUpdateResponse) GetSubscription() *components.Subscription {
+	if s == nil {
+		return nil
+	}
+	return s.Subscription
+}

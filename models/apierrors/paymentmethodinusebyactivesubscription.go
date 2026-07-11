@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type PaymentMethodInUseByActiveSubscription struct {
+	Error_ string `const:"PaymentMethodInUseByActiveSubscription" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &PaymentMethodInUseByActiveSubscription{}
+
+func (e *PaymentMethodInUseByActiveSubscription) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

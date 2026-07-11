@@ -1,0 +1,21 @@
+package components
+
+// CustomerOrganizationData - Schema of an organization and related data for customer portal.
+type CustomerOrganizationData struct {
+	Organization CustomerOrganization `json:"organization"`
+	Products     []CustomerProduct    `json:"products"`
+}
+
+func (c *CustomerOrganizationData) GetOrganization() CustomerOrganization {
+	if c == nil {
+		return CustomerOrganization{}
+	}
+	return c.Organization
+}
+
+func (c *CustomerOrganizationData) GetProducts() []CustomerProduct {
+	if c == nil {
+		return []CustomerProduct{}
+	}
+	return c.Products
+}

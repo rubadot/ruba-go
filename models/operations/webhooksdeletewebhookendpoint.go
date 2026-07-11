@@ -1,0 +1,28 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type WebhooksDeleteWebhookEndpointRequest struct {
+	// The webhook endpoint ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (w *WebhooksDeleteWebhookEndpointRequest) GetID() string {
+	if w == nil {
+		return ""
+	}
+	return w.ID
+}
+
+type WebhooksDeleteWebhookEndpointResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+func (w *WebhooksDeleteWebhookEndpointResponse) GetHTTPMeta() components.HTTPMetadata {
+	if w == nil {
+		return components.HTTPMetadata{}
+	}
+	return w.HTTPMeta
+}

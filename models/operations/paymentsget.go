@@ -1,0 +1,37 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type PaymentsGetRequest struct {
+	// The payment ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (p *PaymentsGetRequest) GetID() string {
+	if p == nil {
+		return ""
+	}
+	return p.ID
+}
+
+type PaymentsGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	Payment *components.Payment
+}
+
+func (p *PaymentsGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
+		return components.HTTPMetadata{}
+	}
+	return p.HTTPMeta
+}
+
+func (p *PaymentsGetResponse) GetPayment() *components.Payment {
+	if p == nil {
+		return nil
+	}
+	return p.Payment
+}

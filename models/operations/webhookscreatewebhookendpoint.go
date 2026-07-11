@@ -1,0 +1,25 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type WebhooksCreateWebhookEndpointResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Webhook endpoint created.
+	WebhookEndpoint *components.WebhookEndpoint
+}
+
+func (w *WebhooksCreateWebhookEndpointResponse) GetHTTPMeta() components.HTTPMetadata {
+	if w == nil {
+		return components.HTTPMetadata{}
+	}
+	return w.HTTPMeta
+}
+
+func (w *WebhooksCreateWebhookEndpointResponse) GetWebhookEndpoint() *components.WebhookEndpoint {
+	if w == nil {
+		return nil
+	}
+	return w.WebhookEndpoint
+}

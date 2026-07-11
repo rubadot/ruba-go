@@ -1,0 +1,25 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type CustomerBenefitGrantDownloadablesUpdate struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	benefitType string `const:"downloadables" json:"benefit_type"`
+}
+
+func (c CustomerBenefitGrantDownloadablesUpdate) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerBenefitGrantDownloadablesUpdate) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"benefit_type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CustomerBenefitGrantDownloadablesUpdate) GetBenefitType() string {
+	return "downloadables"
+}

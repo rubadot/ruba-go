@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type AlreadyCanceledSubscription struct {
+	Error_ string `const:"AlreadyCanceledSubscription" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &AlreadyCanceledSubscription{}
+
+func (e *AlreadyCanceledSubscription) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

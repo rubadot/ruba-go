@@ -1,0 +1,14 @@
+package components
+
+// CustomerOrderInvoice - Order's invoice data.
+type CustomerOrderInvoice struct {
+	// The URL to the invoice.
+	URL string `json:"url"`
+}
+
+func (c *CustomerOrderInvoice) GetURL() string {
+	if c == nil {
+		return ""
+	}
+	return c.URL
+}

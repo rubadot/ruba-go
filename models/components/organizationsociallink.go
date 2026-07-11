@@ -1,0 +1,21 @@
+package components
+
+type OrganizationSocialLink struct {
+	Platform OrganizationSocialPlatforms `json:"platform"`
+	// The URL to the organization profile
+	URL string `json:"url"`
+}
+
+func (o *OrganizationSocialLink) GetPlatform() OrganizationSocialPlatforms {
+	if o == nil {
+		return OrganizationSocialPlatforms("")
+	}
+	return o.Platform
+}
+
+func (o *OrganizationSocialLink) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}

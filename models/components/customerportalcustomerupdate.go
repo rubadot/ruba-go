@@ -1,0 +1,28 @@
+package components
+
+type CustomerPortalCustomerUpdate struct {
+	BillingName    *string       `json:"billing_name,omitempty"`
+	BillingAddress *AddressInput `json:"billing_address,omitempty"`
+	TaxID          *string       `json:"tax_id,omitempty"`
+}
+
+func (c *CustomerPortalCustomerUpdate) GetBillingName() *string {
+	if c == nil {
+		return nil
+	}
+	return c.BillingName
+}
+
+func (c *CustomerPortalCustomerUpdate) GetBillingAddress() *AddressInput {
+	if c == nil {
+		return nil
+	}
+	return c.BillingAddress
+}
+
+func (c *CustomerPortalCustomerUpdate) GetTaxID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.TaxID
+}

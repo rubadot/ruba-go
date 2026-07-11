@@ -1,0 +1,20 @@
+package components
+
+type ListResourceCustomField struct {
+	Items      []CustomField `json:"items"`
+	Pagination Pagination    `json:"pagination"`
+}
+
+func (l *ListResourceCustomField) GetItems() []CustomField {
+	if l == nil {
+		return []CustomField{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceCustomField) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

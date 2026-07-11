@@ -1,0 +1,20 @@
+package components
+
+type ListResourceCustomerPortalMember struct {
+	Items      []CustomerPortalMember `json:"items"`
+	Pagination Pagination             `json:"pagination"`
+}
+
+func (l *ListResourceCustomerPortalMember) GetItems() []CustomerPortalMember {
+	if l == nil {
+		return []CustomerPortalMember{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceCustomerPortalMember) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

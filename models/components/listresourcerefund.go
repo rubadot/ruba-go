@@ -1,0 +1,20 @@
+package components
+
+type ListResourceRefund struct {
+	Items      []Refund   `json:"items"`
+	Pagination Pagination `json:"pagination"`
+}
+
+func (l *ListResourceRefund) GetItems() []Refund {
+	if l == nil {
+		return []Refund{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceRefund) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

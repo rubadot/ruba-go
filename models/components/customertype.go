@@ -1,0 +1,32 @@
+package components
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type CustomerType string
+
+const (
+	CustomerTypeIndividual CustomerType = "individual"
+	CustomerTypeTeam       CustomerType = "team"
+)
+
+func (e CustomerType) ToPointer() *CustomerType {
+	return &e
+}
+func (e *CustomerType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "individual":
+		fallthrough
+	case "team":
+		*e = CustomerType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CustomerType: %v", v)
+	}
+}

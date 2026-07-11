@@ -1,0 +1,20 @@
+package components
+
+type ListResourceDownloadableRead struct {
+	Items      []DownloadableRead `json:"items"`
+	Pagination Pagination         `json:"pagination"`
+}
+
+func (l *ListResourceDownloadableRead) GetItems() []DownloadableRead {
+	if l == nil {
+		return []DownloadableRead{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceDownloadableRead) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

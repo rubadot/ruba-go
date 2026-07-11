@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type CustomerNotReady struct {
+	Error_ string `const:"CustomerNotReady" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &CustomerNotReady{}
+
+func (e *CustomerNotReady) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

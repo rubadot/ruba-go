@@ -1,0 +1,23 @@
+package components
+
+// MetricsIntervalLimit - Date interval limit to get metrics for a given interval.
+type MetricsIntervalLimit struct {
+	// Minimum number of days for this interval.
+	MinDays int64 `json:"min_days"`
+	// Maximum number of days for this interval.
+	MaxDays int64 `json:"max_days"`
+}
+
+func (m *MetricsIntervalLimit) GetMinDays() int64 {
+	if m == nil {
+		return 0
+	}
+	return m.MinDays
+}
+
+func (m *MetricsIntervalLimit) GetMaxDays() int64 {
+	if m == nil {
+		return 0
+	}
+	return m.MaxDays
+}

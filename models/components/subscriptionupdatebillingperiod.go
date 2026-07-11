@@ -1,0 +1,31 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+	"time"
+)
+
+type SubscriptionUpdateBillingPeriod struct {
+	// Set a new date for the end of the current billing period. The subscription will renew on this date. Needs to be later than the current value.
+	//
+	// It is not possible to update the current billing period on a canceled subscription.
+	CurrentBillingPeriodEnd time.Time `json:"current_billing_period_end"`
+}
+
+func (s SubscriptionUpdateBillingPeriod) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SubscriptionUpdateBillingPeriod) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"current_billing_period_end"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SubscriptionUpdateBillingPeriod) GetCurrentBillingPeriodEnd() time.Time {
+	if s == nil {
+		return time.Time{}
+	}
+	return s.CurrentBillingPeriodEnd
+}

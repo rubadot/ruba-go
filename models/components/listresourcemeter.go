@@ -1,0 +1,20 @@
+package components
+
+type ListResourceMeter struct {
+	Items      []Meter    `json:"items"`
+	Pagination Pagination `json:"pagination"`
+}
+
+func (l *ListResourceMeter) GetItems() []Meter {
+	if l == nil {
+		return []Meter{}
+	}
+	return l.Items
+}
+
+func (l *ListResourceMeter) GetPagination() Pagination {
+	if l == nil {
+		return Pagination{}
+	}
+	return l.Pagination
+}

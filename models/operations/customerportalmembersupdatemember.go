@@ -1,0 +1,44 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerPortalMembersUpdateMemberRequest struct {
+	ID                         string                                `pathParam:"style=simple,explode=false,name=id"`
+	CustomerPortalMemberUpdate components.CustomerPortalMemberUpdate `request:"mediaType=application/json"`
+}
+
+func (c *CustomerPortalMembersUpdateMemberRequest) GetID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ID
+}
+
+func (c *CustomerPortalMembersUpdateMemberRequest) GetCustomerPortalMemberUpdate() components.CustomerPortalMemberUpdate {
+	if c == nil {
+		return components.CustomerPortalMemberUpdate{}
+	}
+	return c.CustomerPortalMemberUpdate
+}
+
+type CustomerPortalMembersUpdateMemberResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Member updated.
+	CustomerPortalMember *components.CustomerPortalMember
+}
+
+func (c *CustomerPortalMembersUpdateMemberResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerPortalMembersUpdateMemberResponse) GetCustomerPortalMember() *components.CustomerPortalMember {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerPortalMember
+}

@@ -1,0 +1,36 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerSeatsRevokeSeatRequest struct {
+	SeatID string `pathParam:"style=simple,explode=false,name=seat_id"`
+}
+
+func (c *CustomerSeatsRevokeSeatRequest) GetSeatID() string {
+	if c == nil {
+		return ""
+	}
+	return c.SeatID
+}
+
+type CustomerSeatsRevokeSeatResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	CustomerSeat *components.CustomerSeat
+}
+
+func (c *CustomerSeatsRevokeSeatResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerSeatsRevokeSeatResponse) GetCustomerSeat() *components.CustomerSeat {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSeat
+}

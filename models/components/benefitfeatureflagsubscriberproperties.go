@@ -1,0 +1,20 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+// BenefitFeatureFlagSubscriberProperties - Properties available to subscribers for a benefit of type `feature_flag`.
+type BenefitFeatureFlagSubscriberProperties struct {
+}
+
+func (b BenefitFeatureFlagSubscriberProperties) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BenefitFeatureFlagSubscriberProperties) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}

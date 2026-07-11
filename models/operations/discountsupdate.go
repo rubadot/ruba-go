@@ -1,0 +1,45 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type DiscountsUpdateRequest struct {
+	// The discount ID.
+	ID             string                    `pathParam:"style=simple,explode=false,name=id"`
+	DiscountUpdate components.DiscountUpdate `request:"mediaType=application/json"`
+}
+
+func (d *DiscountsUpdateRequest) GetID() string {
+	if d == nil {
+		return ""
+	}
+	return d.ID
+}
+
+func (d *DiscountsUpdateRequest) GetDiscountUpdate() components.DiscountUpdate {
+	if d == nil {
+		return components.DiscountUpdate{}
+	}
+	return d.DiscountUpdate
+}
+
+type DiscountsUpdateResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Discount updated.
+	Discount *components.Discount
+}
+
+func (d *DiscountsUpdateResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
+		return components.HTTPMetadata{}
+	}
+	return d.HTTPMeta
+}
+
+func (d *DiscountsUpdateResponse) GetDiscount() *components.Discount {
+	if d == nil {
+		return nil
+	}
+	return d.Discount
+}

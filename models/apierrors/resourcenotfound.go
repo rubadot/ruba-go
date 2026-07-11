@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type ResourceNotFound struct {
+	Error_ string `const:"ResourceNotFound" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &ResourceNotFound{}
+
+func (e *ResourceNotFound) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

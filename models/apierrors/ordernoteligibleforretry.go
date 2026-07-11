@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type OrderNotEligibleForRetry struct {
+	Error_ string `const:"OrderNotEligibleForRetry" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &OrderNotEligibleForRetry{}
+
+func (e *OrderNotEligibleForRetry) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

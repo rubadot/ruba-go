@@ -1,0 +1,33 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type OrganizationCompanyLegalEntitySchema struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	type_          string `const:"company" json:"type"`
+	RegisteredName string `json:"registered_name"`
+}
+
+func (o OrganizationCompanyLegalEntitySchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OrganizationCompanyLegalEntitySchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"type", "registered_name"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *OrganizationCompanyLegalEntitySchema) GetType() string {
+	return "company"
+}
+
+func (o *OrganizationCompanyLegalEntitySchema) GetRegisteredName() string {
+	if o == nil {
+		return ""
+	}
+	return o.RegisteredName
+}

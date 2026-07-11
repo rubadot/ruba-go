@@ -1,0 +1,29 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+// CustomerOrganizationFeatureSettings - Feature flags exposed to the customer portal.
+type CustomerOrganizationFeatureSettings struct {
+	// Whether the member model is enabled for this organization.
+	MemberModelEnabled *bool `default:"false" json:"member_model_enabled"`
+}
+
+func (c CustomerOrganizationFeatureSettings) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CustomerOrganizationFeatureSettings) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CustomerOrganizationFeatureSettings) GetMemberModelEnabled() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.MemberModelEnabled
+}

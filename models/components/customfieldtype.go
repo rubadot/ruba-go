@@ -1,0 +1,41 @@
+package components
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type CustomFieldType string
+
+const (
+	CustomFieldTypeText     CustomFieldType = "text"
+	CustomFieldTypeNumber   CustomFieldType = "number"
+	CustomFieldTypeDate     CustomFieldType = "date"
+	CustomFieldTypeCheckbox CustomFieldType = "checkbox"
+	CustomFieldTypeSelect   CustomFieldType = "select"
+)
+
+func (e CustomFieldType) ToPointer() *CustomFieldType {
+	return &e
+}
+func (e *CustomFieldType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "text":
+		fallthrough
+	case "number":
+		fallthrough
+	case "date":
+		fallthrough
+	case "checkbox":
+		fallthrough
+	case "select":
+		*e = CustomFieldType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CustomFieldType: %v", v)
+	}
+}

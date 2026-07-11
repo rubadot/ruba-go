@@ -1,0 +1,23 @@
+package components
+
+// MetricDashboardUpdate - Schema for updating a metrics dashboard.
+type MetricDashboardUpdate struct {
+	// Display name for the dashboard.
+	Name *string `json:"name,omitempty"`
+	// List of metric slugs to display in this dashboard.
+	Metrics []string `json:"metrics,omitempty"`
+}
+
+func (m *MetricDashboardUpdate) GetName() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Name
+}
+
+func (m *MetricDashboardUpdate) GetMetrics() []string {
+	if m == nil {
+		return nil
+	}
+	return m.Metrics
+}

@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type RefundedAlready struct {
+	Error_ string `const:"RefundedAlready" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &RefundedAlready{}
+
+func (e *RefundedAlready) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

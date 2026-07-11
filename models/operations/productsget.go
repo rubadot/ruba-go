@@ -1,0 +1,36 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type ProductsGetRequest struct {
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (p *ProductsGetRequest) GetID() string {
+	if p == nil {
+		return ""
+	}
+	return p.ID
+}
+
+type ProductsGetResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	Product *components.Product
+}
+
+func (p *ProductsGetResponse) GetHTTPMeta() components.HTTPMetadata {
+	if p == nil {
+		return components.HTTPMetadata{}
+	}
+	return p.HTTPMeta
+}
+
+func (p *ProductsGetResponse) GetProduct() *components.Product {
+	if p == nil {
+		return nil
+	}
+	return p.Product
+}

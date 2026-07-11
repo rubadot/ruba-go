@@ -1,0 +1,37 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type OrdersInvoiceRequest struct {
+	// The order ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (o *OrdersInvoiceRequest) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+type OrdersInvoiceResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	OrderInvoice *components.OrderInvoice
+}
+
+func (o *OrdersInvoiceResponse) GetHTTPMeta() components.HTTPMetadata {
+	if o == nil {
+		return components.HTTPMetadata{}
+	}
+	return o.HTTPMeta
+}
+
+func (o *OrdersInvoiceResponse) GetOrderInvoice() *components.OrderInvoice {
+	if o == nil {
+		return nil
+	}
+	return o.OrderInvoice
+}

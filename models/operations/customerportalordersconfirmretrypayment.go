@@ -1,0 +1,64 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type CustomerPortalOrdersConfirmRetryPaymentSecurity struct {
+	CustomerSession *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_customer_session"`
+	MemberSession   *string `security:"scheme,type=http,subtype=bearer,name=Authorization,env=ruba_member_session"`
+}
+
+func (c *CustomerPortalOrdersConfirmRetryPaymentSecurity) GetCustomerSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerSession
+}
+
+func (c *CustomerPortalOrdersConfirmRetryPaymentSecurity) GetMemberSession() *string {
+	if c == nil {
+		return nil
+	}
+	return c.MemberSession
+}
+
+type CustomerPortalOrdersConfirmRetryPaymentRequest struct {
+	// The order ID.
+	ID                          string                                 `pathParam:"style=simple,explode=false,name=id"`
+	CustomerOrderConfirmPayment components.CustomerOrderConfirmPayment `request:"mediaType=application/json"`
+}
+
+func (c *CustomerPortalOrdersConfirmRetryPaymentRequest) GetID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ID
+}
+
+func (c *CustomerPortalOrdersConfirmRetryPaymentRequest) GetCustomerOrderConfirmPayment() components.CustomerOrderConfirmPayment {
+	if c == nil {
+		return components.CustomerOrderConfirmPayment{}
+	}
+	return c.CustomerOrderConfirmPayment
+}
+
+type CustomerPortalOrdersConfirmRetryPaymentResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Successful Response
+	CustomerOrderPaymentConfirmation *components.CustomerOrderPaymentConfirmation
+}
+
+func (c *CustomerPortalOrdersConfirmRetryPaymentResponse) GetHTTPMeta() components.HTTPMetadata {
+	if c == nil {
+		return components.HTTPMetadata{}
+	}
+	return c.HTTPMeta
+}
+
+func (c *CustomerPortalOrdersConfirmRetryPaymentResponse) GetCustomerOrderPaymentConfirmation() *components.CustomerOrderPaymentConfirmation {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerOrderPaymentConfirmation
+}

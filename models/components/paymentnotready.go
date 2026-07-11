@@ -1,0 +1,33 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type PaymentNotReady struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	error_ string `const:"PaymentNotReady" json:"error"`
+	Detail string `json:"detail"`
+}
+
+func (p PaymentNotReady) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaymentNotReady) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"error", "detail"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PaymentNotReady) GetError() string {
+	return "PaymentNotReady"
+}
+
+func (p *PaymentNotReady) GetDetail() string {
+	if p == nil {
+		return ""
+	}
+	return p.Detail
+}

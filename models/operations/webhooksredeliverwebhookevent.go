@@ -1,0 +1,37 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type WebhooksRedeliverWebhookEventRequest struct {
+	// The webhook event ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (w *WebhooksRedeliverWebhookEventRequest) GetID() string {
+	if w == nil {
+		return ""
+	}
+	return w.ID
+}
+
+type WebhooksRedeliverWebhookEventResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+	// Webhook event re-delivery scheduled.
+	Any any
+}
+
+func (w *WebhooksRedeliverWebhookEventResponse) GetHTTPMeta() components.HTTPMetadata {
+	if w == nil {
+		return components.HTTPMetadata{}
+	}
+	return w.HTTPMeta
+}
+
+func (w *WebhooksRedeliverWebhookEventResponse) GetAny() any {
+	if w == nil {
+		return nil
+	}
+	return w.Any
+}

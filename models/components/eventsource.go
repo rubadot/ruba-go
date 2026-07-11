@@ -1,0 +1,32 @@
+package components
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type EventSource string
+
+const (
+	EventSourceSystem EventSource = "system"
+	EventSourceUser   EventSource = "user"
+)
+
+func (e EventSource) ToPointer() *EventSource {
+	return &e
+}
+func (e *EventSource) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "system":
+		fallthrough
+	case "user":
+		*e = EventSource(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for EventSource: %v", v)
+	}
+}

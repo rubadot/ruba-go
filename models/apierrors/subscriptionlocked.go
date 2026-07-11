@@ -1,0 +1,17 @@
+package apierrors
+
+import (
+	"encoding/json"
+)
+
+type SubscriptionLocked struct {
+	Error_ string `const:"SubscriptionLocked" json:"error"`
+	Detail string `json:"detail"`
+}
+
+var _ error = &SubscriptionLocked{}
+
+func (e *SubscriptionLocked) Error() string {
+	data, _ := json.Marshal(e)
+	return string(data)
+}

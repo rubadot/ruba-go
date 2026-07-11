@@ -1,0 +1,33 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type AlreadyActiveSubscriptionError struct {
+	//lint:ignore U1000 accessed via reflection for JSON marshaling
+	error_ string `const:"AlreadyActiveSubscriptionError" json:"error"`
+	Detail string `json:"detail"`
+}
+
+func (a AlreadyActiveSubscriptionError) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AlreadyActiveSubscriptionError) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"error", "detail"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AlreadyActiveSubscriptionError) GetError() string {
+	return "AlreadyActiveSubscriptionError"
+}
+
+func (a *AlreadyActiveSubscriptionError) GetDetail() string {
+	if a == nil {
+		return ""
+	}
+	return a.Detail
+}

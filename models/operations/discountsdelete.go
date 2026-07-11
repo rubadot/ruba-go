@@ -1,0 +1,28 @@
+package operations
+
+import (
+	"github.com/Rubadot/ruba-go/models/components"
+)
+
+type DiscountsDeleteRequest struct {
+	// The discount ID.
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (d *DiscountsDeleteRequest) GetID() string {
+	if d == nil {
+		return ""
+	}
+	return d.ID
+}
+
+type DiscountsDeleteResponse struct {
+	HTTPMeta components.HTTPMetadata `json:"-"`
+}
+
+func (d *DiscountsDeleteResponse) GetHTTPMeta() components.HTTPMetadata {
+	if d == nil {
+		return components.HTTPMetadata{}
+	}
+	return d.HTTPMeta
+}

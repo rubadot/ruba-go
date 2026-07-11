@@ -1,0 +1,37 @@
+package components
+
+import (
+	"github.com/Rubadot/ruba-go/internal/utils"
+)
+
+type CostMetadataOutput struct {
+	// The amount in cents.
+	Amount string `json:"amount"`
+	// The currency. Currently, only `usd` is supported.
+	Currency string `json:"currency"`
+}
+
+func (c CostMetadataOutput) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CostMetadataOutput) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"amount", "currency"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CostMetadataOutput) GetAmount() string {
+	if c == nil {
+		return ""
+	}
+	return c.Amount
+}
+
+func (c *CostMetadataOutput) GetCurrency() string {
+	if c == nil {
+		return ""
+	}
+	return c.Currency
+}
