@@ -164,7 +164,7 @@ func New(opts ...SDKOption) *Ruba {
 	sdk := &Ruba{
 		SDKVersion: "0.16.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "ruba-sdk/go 0.16.1 github.com/Rubadot/ruba-go",
+			UserAgent:  "ruba-sdk/go 0.16.2 github.com/Rubadot/ruba-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),

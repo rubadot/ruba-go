@@ -1,6 +1,6 @@
 # Ruba for Go
 
-The official Go client for Ruba. It gives Go services typed access to products, checkouts, customers, subscriptions, orders, meters, webhooks, and the rest of the Ruba API.
+Use typed clients to connect Go services to Ruba payments, billing, customers, subscriptions, orders, and webhooks.
 
 ## Add it to your project
 
